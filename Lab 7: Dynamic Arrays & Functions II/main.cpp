@@ -9,8 +9,14 @@
 #include <string>
 using namespace std;
 
+//function reverseArray reverses the order of a dynamic string array
+//arguments: dynamic string array, int SIZE
+//returns: dynamic string array
 string reverseArray(string *arr, int SIZE);
 
+//function displayArray displays a dynamic string array
+//arguments: dynamic string array, int SIZE
+//returns: none
 void displayArray(string *arr,int SIZE);
 
 int main(int argc, const char * argv[]) {
@@ -21,17 +27,28 @@ int main(int argc, const char * argv[]) {
     *(dArray + 2) = "Lauren";
     *(dArray + 3) = "Tucker";
     *(dArray + 4) = "Theo";
+    
     cout << "Original array:";
     displayArray(dArray,SIZE);
-    //reverseArray(dArray,SIZE);
+    reverseArray(dArray,SIZE);
     cout << "\nReversed array:";
     displayArray(dArray,SIZE);
     
     delete[] dArray;
     return 0;
 }
+
 string reverseArray(string *arr, int SIZE){
-    
+    string *left = arr;
+    string *right = arr + (SIZE - 1);
+    while (left < right) {
+        string temp = *left;
+        *left = *right;
+        *right = temp;
+        left++;
+        right--;
+    }
+    return *arr;
 }
 
 void displayArray(string *arr, int SIZE){
