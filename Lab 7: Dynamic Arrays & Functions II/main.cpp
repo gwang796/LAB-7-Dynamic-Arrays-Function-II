@@ -20,33 +20,35 @@ string reverseArray(string *arr, int SIZE);
 void displayArray(string *arr,int SIZE);
 
 int main(int argc, const char * argv[]) {
-    const int SIZE = 5;
-    string *dArray = new string[SIZE];
+    const int SIZE = 5; //declare SIZE of array
+    string *dArray = new string[SIZE]; //declare dynamic string array
+    //hard code inputted strings into dynamic string array
     *(dArray + 0) = "James";
     *(dArray + 1) = "Adam";
     *(dArray + 2) = "Lauren";
     *(dArray + 3) = "Tucker";
     *(dArray + 4) = "Theo";
     
+    //printing output
     cout << "Original array:";
-    displayArray(dArray,SIZE);
-    reverseArray(dArray,SIZE);
+    displayArray(dArray,SIZE); //calling displayArray
+    reverseArray(dArray,SIZE); //calling reverseArray
     cout << "\nReversed array:";
-    displayArray(dArray,SIZE);
+    displayArray(dArray,SIZE); //calling displayArray
     
-    delete[] dArray;
+    delete[] dArray; //frees up memory
     return 0;
 }
 
 string reverseArray(string *arr, int SIZE){
-    string *left = arr;
-    string *right = arr + (SIZE - 1);
-    while (left < right) {
-        string temp = *left;
-        *left = *right;
-        *right = temp;
-        left++;
-        right--;
+    string *left = arr; //start of dynamic array
+    string *right = arr + (SIZE - 1); //end of dynamic array
+    while (left < right) { //middle name does not move
+        string temp = *left; //string temp copies value of *left(first string)
+        *left = *right; // left becomes right
+        *right = temp; //right becomes old left
+        left++; //moving right to middle of array
+        right--; //moving left to middle of array
     }
     return *arr;
 }
